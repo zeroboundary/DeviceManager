@@ -1,9 +1,9 @@
 {
-  "update": "no",
+  "update": "yes",
   "new_version": "1.0.1",
-  "apk_file_url": "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/apk/app-debug.apk",
+  "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/app-debug.apk",
   "update_log": "1，初始版本\r\n2，NULL",
-  "target_size": "20M",
-  "new_md5":"295687E756F569C7159974DD493489A5",
+  "target_size": "3M",
+  "new_md5":"173ecdf1aa83ec70131bff211308df14",
   "constraint": false
 }
