@@ -1,5 +1,5 @@
 {
-  "update": "yes",
+  "update": "Yes",
   "new_version": "1.0.1",
   "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/app-debug.apk",
   "update_log": "1，初始版本\r\n2，NULL",
