@@ -1,9 +1,9 @@
 {
   "update": "Yes",
-  "new_version": "1.0.1",
+  "new_version": "1.0.2",
   "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/app-debug.apk",
   "update_log": "1，初始版本\r\n2，NULL",
   "target_size": "3M",
-  "new_md5":"173ecdf1aa83ec70131bff211308df14",
+  "new_md5":"6a987a2432a58e366c67ff3a1f4bca89",
   "constraint": false
 }
