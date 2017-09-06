@@ -6,6 +6,12 @@
   "update_log": "1，初始版本\r\n2，NULL",
   "target_size": "3M",
   "new_md5": "6a987a2432a58e366c67ff3a1f4bca89",
-  "constraint": false,
-  "third_apk_num": "2"
+  "constraint": "false",
+  "third_apk_num": "2",
+  "third_apk1_package": "com.antutu.ABenchMark",
+  "third_apk1_versionName": "6.3.6",
+  "third_apk1_url": "http://192.168.1.102:8000/antutu-benchmark-V6.3.5.apk",
+  "third_apk2_package": "com.ludashi.benchmark",
+  "third_apk2_versionName": "8.4.3.17.0824",
+  "third_apk2_url": "http://192.168.1.102:8000/ludashi_main.apk"
 }
