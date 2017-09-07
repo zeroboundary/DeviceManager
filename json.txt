@@ -9,9 +9,9 @@
   "constraint": "false",
   "third_apk_num": "2",
   "third_apk0_package": "com.antutu.ABenchMark",
-  "third_apk0_versionName": "6.3.6",
+  "third_apk0_versionName": "6.3.5",
   "third_apk0_url": "http://192.168.1.102:8000/antutu-benchmark-V6.3.5.apk",
   "third_apk1_package": "com.ludashi.benchmark",
-  "third_apk1_versionName": "8.4.3.17.0824",
+  "third_apk1_versionName": "8.4.3.17.0823",
   "third_apk1_url": "http://192.168.1.102:8000/ludashi_main.apk"
 }
