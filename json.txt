@@ -13,7 +13,7 @@
   "third_apk1_package": "com.ludashi.benchmark",
   "third_apk1_versionName": "8.4.3.17.0823",
   "third_apk1_url": "http://192.168.1.102:8000/ludashi_main.apk",
-  "system_new_version":"jinkunkechuang-2C-20170916",
+  "system_new_version":"jinkunkechuang-2C-20170901",
   "20170901-20170916":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170916-update.zip",
   "end":"null"
 }
