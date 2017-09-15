@@ -14,7 +14,7 @@
   "third_apk1_package": "com.netfeige",
   "third_apk1_versionCode": "50",
   "third_apk1_url": "http://www.ipmsg.org.cn/downloads/Feige_for_Android.apk",
-  "system_new_version":"jinkunkechuang-2C-20170901",
-  "20170901-20170916":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170916-update.zip",
+  "system_new_version":"jinkunkechuang-2C-20170915",
+  "20170901-20170915":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170915-update.zip",
   "end":"null"
 }
