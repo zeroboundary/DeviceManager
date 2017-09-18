@@ -15,6 +15,7 @@
   "third_apk1_versionCode": "5995",
   "third_apk1_url": "http://music.baidu.com/cms/BaiduMusic-musicsybutton.apk",
   "system_new_version":"jinkunkechuang-2C-20170915",
-  "20170901-20170915":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170915-update.zip",
+  "20170901-20170915-eng":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170915-eng-update.zip",
+  "20170901-20170915-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/20170901-20170915-user-update.zip",
   "end":"null"
 }
