@@ -20,7 +20,5 @@
   "A001-20170901-20171027-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A001-20170901-20171027-user-update.zip",
   "A002-20171029-20171102-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171029-20171102-user-update.zip",
   "A002-20171029-20171102-user-md5":"eb9aa5733681fa17ed86116ef4206f31",
-  "A002-20171029-20171102-eng":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171029-20171102-user-update.zip",
-  "A002-20171029-20171102-eng-md5":"eb9aa5733681fa17ed86116ef4206f31",
   "end":"null"
 }
