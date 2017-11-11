@@ -1,7 +1,7 @@
 {
   "update": "Yes",
-  "new_versionName": "1.0.11",
-  "new_versionCode":"11",
+  "new_versionName": "1.0.12",
+  "new_versionCode":"12",
   "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/DeviceManager.apk",
   "update_log": "1，初始版本\r\n2，NULL",
   "target_size": "3M",
