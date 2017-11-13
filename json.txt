@@ -14,7 +14,7 @@
   "third_apk1_package": "com.ting.mp3.android",
   "third_apk1_versionCode": "5995",
   "third_apk1_url": "http://music.baidu.com/cms/BaiduMusic-musicsybutton.apk",
-  "disabled_apks_list": "com.estrongs.android.pop com.netfeige",
+  "disabled_apks_list": "com.estrongs.android.pop",
   "enabled_apks_list": "",
   "A001-new_version_date":"20171027",
   "A002-new_version_date":"20171102",
