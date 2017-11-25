@@ -13,10 +13,13 @@
   "disabled_apks_list": "com.estrongs.android.pop",
   "enabled_apks_list": "",
   "A001-new_version_date":"20171027",
-  "A002-new_version_date":"20171102",
+  "A002-new_version_date":"20171125",
   "A001-20170901-20171027-eng":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A001-20170901-20171027-eng-update.zip",
-  "A001-20170901-20171027-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A001-20170901-20171027-user-update.zip",
   "A002-20171029-20171102-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171029-20171102-user-update.zip",
   "A002-20171029-20171102-user-md5":"eb9aa5733681fa17ed86116ef4206f31",
+  "A002-20171029-20171125-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171029-20171125-user-update.zip",
+  "A002-20171029-20171125-user-md5":"c1196f947d7c0d7840a9c7ca68cc2e9f",
+  "A002-20171102-20171125-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171102-20171125-user-update.zip",
+  "A002-20171102-20171125-user-md5":"d9755150f8d823cbea336962886ff6bb",
   "end":"null"
 }
