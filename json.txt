@@ -1,5 +1,6 @@
 {
   "update": "Yes",
+  "new_versionName": "99.99.99",
   "new_versionCode":"13",
   "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/DeviceManager.apk",
   "third_apk_num": "2",
