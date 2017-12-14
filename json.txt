@@ -21,5 +21,11 @@
   "A002-20171029-20171125-user-md5":"c1196f947d7c0d7840a9c7ca68cc2e9f",
   "A002-20171102-20171125-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171102-20171125-user-update.zip",
   "A002-20171102-20171125-user-md5":"d9755150f8d823cbea336962886ff6bb",
+  "A002-20171029-20171214-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171029-20171214-user-update.zip",
+  "A002-20171029-20171214-user-md5":"b3c455a801729f7e5424523305663bf5",
+  "A002-20171102-20171214-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171102-20171214-user-update.zip",
+  "A002-20171102-20171214-user-md5":"4015ddac7d39d571ab41b0f99501e2b7",
+  "A002-20171125-20171214-user":"https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/A002-20171125-20171214-user-update.zip",
+  "A002-20171125-20171214-user-md5":"b6ea9fd02c8d2050f8d422d4c3b5c33a",
   "end":"null"
 }
