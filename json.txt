@@ -3,7 +3,7 @@
   "new_versionName": "99.99.99",
   "new_versionCode":"14",
   "apk_file_url": "https://raw.githubusercontent.com/zeroboundary/DeviceManager/master/DeviceManager.apk",
-  "third_apk_num": "2",
+  "third_apk_num": "1",
   "third_apk0_package": "com.hufeng.filemanager",
   "third_apk0_versionCode": "74",
   "third_apk0_url": "http://d2.smzy.com/sort01738/smzy_beluga.apk",
