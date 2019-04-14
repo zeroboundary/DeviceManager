@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<title>吴欢欢AnkiConnectWeb</title>
+	<style>
+		.container {
+			position: relative;
+			margin-left: auto;
+			margin-right: auto;
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+
+		.home-row {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-flex-wrap: wrap;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			margin-right: -15px;
+			margin-left: -15px;
+		}
+
+		.light-bottom-border {
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.home-button {
+			text-align: left;
+			font-family: arial, verdana, sans-serif, '微软雅黑';
+			font-size: 20px;
+			border-color: transparent;
+			background-color: transparent;
+			font-weight: 400;
+			color: #0275d8;
+			border-radius: 0;
+		}
+
+		.deckDueNumber {
+			text-align: right;
+			font-size: 0.95rem;
+		}
+
+		.home-counts {
+			-webkit-box-flex: 0;
+			-webkit-flex: 0 0 30%;
+			-ms-flex: 0 0 30%;
+			flex: 0 0 30%;
+			max-width: 30%;
+		}
+
+		.showanswer-button {
+			/* position: fixed; */
+			padding: .75rem 2.5rem;
+			font-size: 1.25rem;
+			border-radius: .3rem;
+			color: #fff;
+			background-color: #0275d8;
+			border-color: #0275d8;
+			display: block;
+			/* 水平居中 */
+			margin: 0 auto;
+		}
+
+		.answerAgain-button {
+			padding: .75rem 1.5rem;
+			font-size: 1.25rem;
+			border-radius: .3rem;
+			color: #fff;
+			background-color: rgb(255, 72, 0);
+		}
+
+		.answerNomal-button {
+			padding: .75rem 1.5rem;
+			font-size: 1.25rem;
+			border-radius: .3rem;
+			color: #fff;
+			background-color: #0275d8;
+			border-color: #0275d8;
+		}
+
+		.answerEasy-button {
+			padding: .75rem 1.5rem;
+			font-size: 1.25rem;
+			border-radius: .3rem;
+			color: #fff;
+			background-color: #888888;
+			border-color: #0275d8;
+		}
+
+		.remaining {
+			float: right;
+			/* width: 20%; */
+		}
+
+		.dock-name {
+			margin: 0 auto;
+			width: 40%;
+			font-family: 微软雅黑;
+			font-size: 24px;
+			text-align: left;
+			color: beige;
+			background-color: transparent;
+		}
+
+		#ansarea-pad {
+			min-height: 6rem;
+		}
+
+		#ansarea {
+			min-height: 6rem;
+			background: white;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+
+		.ansarea {
+			padding-top: 1rem !important;
+		}
+	</style>
+
+
+	<script src="jquery-1.9.1.min.js">
+	</script>
+	<script>
+		// var g = ""; // 全局变量
+		var note; // 全局变量，保存当前学习的卡片
+		// 注意：设置AnkiConnect允许任意IP访问：NET_ADDRESS = os.getenv('ANKICONNECT_BIND_ADDRESS', '0.0.0.0')
+		// 注意：用frp穿透AnkiConnect服务器时注意不能用http映射方式，要用tcp方式映射，否则js出现域访问错误CORS policy
+		// ankiConnect 服务器地址 
+		var ankiWebAddress = 'http://192.168.43.146:8765'
+		// var ankiWebAddress = "http://blvhop.freenat.bid:63390";
+
+		// 初始化内容  
+		function init() {
+			deckName = decodeURI(getUrlParam("deckName")); // 从URL获取访问方式
+
+			var contentDiv = document.getElementById("contentDiv");
+			var errorDiv = document.getElementById("errorDiv");
+			var ansarea = document.getElementById("ansarea");
+
+			if (deckName == "") { // 生成主页
+				console.log("init HOME PAGE--------")
+
+				// title
+				contentDiv.innerHTML += "<div class=\"dock-name\"><a class=\"dock-name\" href=\"AnkiConnectWeb.html\">HOME " + "牌组" + "</a></div>";
+				// 添加同步button
+				contentDiv.innerHTML += "<div class=\"remaining\"><button id=sync onclick=\"sync()\" class='home-button'>sync</button></div><br/><br/>";
+
+				// 得到所有deckName，生成deckName列表
+				var promise = invoke('deckNamesAndCounts');
+				// 异步promise执行成功后，用then处理结果
+				promise
+					.then(function (value) {
+						value.sort();
+						for (var i = 0; i < value.length; i++) {
+							deck = value[i];
+
+							var buttonTxt = deck[0].replace(/.*?::/g, "　　");
+
+							// 添加button
+							var htmlpart = "<div class=\"home-row light-bottom-border\">"
+								+ "<div style=\"width:300px; height:35px;\">"
+								+ "<button id=button" + i + " onclick=\"enterDeck('" + deck[0] + "')\" class='home-button'>" + buttonTxt + "</button><br/>"
+								+ "</div>";
+
+							// 如果学习数量不都为0，则显示学习数量
+							if ((deck[2] + deck[3] + deck[4]) != 0) {
+								htmlpart += "<div class=\"home-counts\">"
+									+ "<div class=\"deckDueNumber\">"
+									+ "<font color=\"#000099\">" + deck[4] + "</font>"
+									+ "</div>"
+									// + "<div class=\"deckDueNumber\">"
+									// + "<font color=\"#C35617\">" + deck[3] + "</font>"
+									// + "</div>"
+									+ "<div class=\"deckDueNumber\">"
+									+ "<font color=\"#007700\">" + deck[2] + "</font>"
+									+ "</div></div>";
+							}
+
+							htmlpart += "</div>";
+
+							contentDiv.innerHTML += htmlpart;
+							console.log("add button " + deck[0]);
+						}
+					}).catch(function (error) {
+						console.log(error);
+						errorDiv.innerHTML += "ERROR：" + error;
+					});
+			} else { // 根据牌组生成复习页面
+				console.log("init DECK PAGE-------- deckName: " + deckName)
+
+				contentDiv.innerHTML += "<div class=\"dock-name\"><a class=\"dock-name\" href=\"AnkiConnectWeb.html\">HOME " + deckName + "</a></div>";
+
+				// 得到当前卡片
+				var promise = invoke("guiCurrentCard");
+				promise
+					.then(function (value) {
+						note = value;
+						// 根据note中的CSS动态添加CSS
+						var style = document.createElement("style");
+						style.type = "text/css";
+						try {
+							style.appendChild(document.createTextNode(note.css));
+						} catch (ex) {
+							console.log(ex);
+							style.styleSheet.cssText = "body{background-color:red}";//针对IE
+						}
+						var head = document.getElementsByTagName("head")[0];
+						head.appendChild(style);
+
+						// 添加新建、正在学习、复习数量显示
+						contentDiv.innerHTML += "<div class=\"remaining\">" + note.remaining + "</div>";
+
+						// 填充问题
+						contentDiv.innerHTML += "<br/><br/><div id=\"questionDiv\">" + note.question + "</div>";
+
+						// 添加button——显示答案
+						ansarea.innerHTML += "<div id=\"showAnswer\" class=\"ansarea\"><button class=\"showanswer-button\" onclick=\"showAnswer()\">显示答案</button></div>";
+					})
+					.catch(function (error) {
+						// promise chain中出现异常的时候会被调用
+						console.log(error);
+						contentDiv.innerHTML += "<h3>恭喜！今日已经复习完毕：" + deckName + "</h3>";
+					});
+			}
+		}
+
+		// 同步
+		function sync() {
+			var promise = invoke('getStatus');
+			promise.then(function (value) {
+				ansarea.innerHTML += "<h3>数据同步开始 " + (new Date().format("yyyy-MM-dd hh:mm:ss")) + "</h3>";
+				if (value == "sync") {
+					ansarea.innerHTML += "<h3>数据正在同步中 " + (new Date().format("yyyy-MM-dd hh:mm:ss")) + "</h3>";
+				} else {
+					var promiseSync = invoke('sync');
+					promiseSync
+						.then(function (value) {
+							ansarea.innerHTML += "<h3>数据同步成功</h3>";
+						})
+						.catch(function (error) {
+							console.error(error);
+							contentDiv.innerHTML += "<h3>数据同步失败" + error + "</h3>";
+						});
+				}
+			});
+		}
+
+
+		// 主页转跳到牌组开始学习
+		function enterDeck(deckName) {
+			// 开始学习牌组
+			var promise = invoke('guiDeckReview', { name: deckName });
+			promise.then(function (value) {
+				// 加参数转跳
+				window.location.href = "?deckName=" + encodeURI(deckName);
+			});
+		}
+
+		// 学习卡片时显示答案，注：onclick 只能传递字符串。此处变通通过全局对象传递answer
+		function showAnswer() {
+			// 服务器同步显示答案
+			var promise = invoke('guiShowAnswer');
+			promise.then(function (value) {
+			});
+
+			// 移除显示答案button
+			showAnswer = document.getElementById("showAnswer");
+			// showAnswer.style.display="none";
+			ansarea.removeChild(showAnswer);
+
+			// 移除问题
+			questionDiv = document.getElementById("questionDiv");
+			contentDiv.removeChild(questionDiv);
+
+			// 添加答案
+			contentDiv.innerHTML += "<div id=\"answerDiv\">" + note.answer + "</div>";
+
+			// 添加回答Button
+			buttonsHtml = "<center><table cellpading=0 cellspacing=0><tr>"
+				+ "<td align=center><span class=lable>" + note.buttonsNextIvl[0] + "</span> <br>"
+				+ "<button id=\"answerAgain\" class=\"answerAgain-button\" onclick=\"doAnswer(" + note.buttons[0] + ")\">生疏/错误</button>"
+				+ "</td>"
+				+ "<td align=center><span class=lable>" + note.buttonsNextIvl[1] + "</span><br>"
+				+ "<button id=\"answerNomal\" class=\"answerNomal-button\" onclick=\"doAnswer(" + note.buttons[1] + ")\">犹豫/想起</button>"
+				+ "</td>";
+
+			buttonsHtml += "<td align=center><span class=lable>";
+			if (note.buttons.length < 3) { // button数量小于3时放一个占位button在右边
+				buttonsHtml += "</span><br>"
+					+ "<button id=\"answerEasy\" class=\"answerEasy-button\")\">　　/　　</button>";
+			} else {
+				buttonsHtml += note.buttonsNextIvl[2] + "</span><br>"
+					+ "<button id=\"answerEasy\" class=\"answerEasy-button\" onclick=\"doAnswer(" + note.buttons[2] + ")\">顺利/正确</button>";
+			}
+			buttonsHtml += "</td>" + "</tr></table></center>";
+
+			ansarea.innerHTML += buttonsHtml;
+		}
+
+		// 回答Button
+		function doAnswer(choose) {
+			console.log("doAnswer easy: " + choose);
+			var promise = invoke('guiAnswerCard', { ease: choose });
+			promise.then(function (value) {
+				location.reload();
+			});
+		}
+
+		// for code test
+		$(document).ready(function () {
+			// <!-- <button id="showNotes">显示牌组</button> -->
+			$("#ShowNotes").click(function () {
+				const result = invoke('deckNames');
+				console.log(`got list of decks: ${result}`);
+				console.log(result);
+				// 使用jquery真的很方便，比如要控制div的显示与隐藏，一句话就搞定了，请看下面使用说明。
+				// $("#id").show()表示display:block, 
+				// $("#id").hide()表示display:none; 
+				// $("#id").toggle()切换元素的可见状态。如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的
+				$("#IdiomsContent").toggle()
+
+				// multi用法
+				var promise = invoke('multi', { actions: [{ action: "guiDeckReview", version: 6, params: { name: deckName } }, { action: "guiCurrentCard", version: 6 }] });
+				promise.then(function (value) {
+					console.log("multi result: " + value);
+				});
+			}); // end click
+
+		}); // end document
+
+		// POST 请求 Anki API
+		function invoke(action, params = {}) {
+			return new Promise((resolve, reject) => {
+				const xhr = new XMLHttpRequest();
+				xhr.addEventListener('error', () => reject('failed to issue request'));
+				xhr.addEventListener('load', () => {
+					try {
+						const response = JSON.parse(xhr.responseText);
+						if (Object.getOwnPropertyNames(response).length != 2) {
+							throw 'response has an unexpected number of fields';
+						}
+						if (!response.hasOwnProperty('error')) {
+							throw 'response is missing required error field';
+						}
+						if (!response.hasOwnProperty('result')) {
+							throw 'response is missing required result field';
+						}
+						if (response.error) {
+							throw response.error;
+						}
+						console.log("invoke inner result: ")
+						console.log(response.result);
+						resolve(response.result);
+					} catch (e) {
+						reject(e);
+					}
+				});
+
+				xhr.open('POST', ankiWebAddress, true); // false 同步请求；true 异步请求(默认)
+				version = 6; // AnkiConnect版本号
+				data = JSON.stringify({ action, version, params });
+				xhr.send(data);
+			});
+		}
+
+		// 获取参数
+		function getUrlParam(param) {
+			var url = document.location.toString();
+			var arrObj = url.split("?");
+
+			if (arrObj.length > 1) {
+				var arrPara = arrObj[1].split("&");
+				var arr;
+
+				for (var i = 0; i < arrPara.length; i++) {
+					arr = arrPara[i].split("=");
+
+					if (arr != null && arr[0] == param) {
+						return arr[1];
+					}
+				}
+				return "";
+			}
+			else {
+				return "";
+			}
+		}
+
+		// 格式化时间
+		Date.prototype.format = function (format) {
+			var args = {
+				"M+": this.getMonth() + 1,
+				"d+": this.getDate(),
+				"h+": this.getHours(),
+				"m+": this.getMinutes(),
+				"s+": this.getSeconds(),
+				"q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+				"S": this.getMilliseconds()
+			};
+			if (/(y+)/.test(format))
+				format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+			for (var i in args) {
+				var n = args[i];
+				if (new RegExp("(" + i + ")").test(format))
+					format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
+			}
+			return format;
+
+		};
+
+
+
+	</script>
+
+</head>
+
+<body onload='init()'>
+	<main class="container">
+		<div id="contentDiv" class="card"></div>
+
+		<div id="errorDiv" style="color:#FF0000;TEXT-DECORATION: line-through"></div>
+
+		<!-- 底部button栏占位 -->
+		<div id="ansarea-pad"></div>
+		<!-- 底部button栏 div -->
+		<div id="ansarea"> </div>
+	</main>
+</body>
+
+</html>
